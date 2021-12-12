@@ -1,0 +1,44 @@
+<head>
+	<body>
+		<h1>Search/Add Friend</h1>
+		<li><a href='/'>Home</a></li>
+		<li><a href='/friend'>Friend</a></li>
+		<li><a href='/recom'>Friend Recommendations</a></li>
+		{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {% endfor%}
+            {% endif %}
+        {% endwith%}
+		<form method = "POST" action = "#">
+			 <p> Add friend: </p>	
+			 <input type="email" name="email" placeholder="Enter their email">
+			 <input type="submit" name="add" value="add">
+			 <p> Search for friend: </p>
+			 <input type="txt" name="firstname" placeholder="Enter their first name">
+			 <input type="submit" name="search" value="search">
+			{% if data %}
+			<label><p>Search result:</p></label>
+			<ul>
+				{% for row in data %}
+				<li>
+					{{row[1]}}, {{row[2]}}, {{row[3]}}
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% if noresult %}
+			<p>No result</p>
+			{% endif %}
+		</form>
+	</body>
+</head>
+
+
+<!-- 			<input type="button" value="Add!"> -->
+
+
+
+
+<!-- <button type="button" onclick=" window.location.href='{{ url_for( 'addfriend') }}';">add</button> -->

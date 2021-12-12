@@ -1,0 +1,21 @@
+<head>
+	<body>
+		<h1>Freind Recommendation</h1>
+		<li><a href='/'>Home</a></li>
+		<li><a href='/addfriend'>Search/Add friends</a></li>
+
+		<p>Friends of friends, people who you might know:</p>
+		{% if data %}
+		<ul>
+			{% for row in data %}
+			<li>
+				Appear {{row[1]}} times, {{row[0]}}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<p>No result can be found</p>
+		{% endif %}
+	{% block content %}{% endblock %}
+	</body>
+</head>

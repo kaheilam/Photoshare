@@ -1,0 +1,28 @@
+<head>
+	<body>
+		{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {% endfor%}
+            {% endif %}
+        {% endwith%}
+		<h1>{{email}}'s Friend Page</h1>
+		<li><a href='/'>Home</a></li>
+		<li><a href='/addfriend'>Search/Add friends</a></li>
+		<li><a href='/recom'>Friend Recommendations</a></li>
+		{% if data %}
+		<label>Your friend list:</label>
+		<ul>
+			{% for row in data %}
+			<li>
+				{{row}}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<p>Your friend list is empty.</p>
+		{% endif %}
+
+	</body>
+</head>

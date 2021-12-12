@@ -1,0 +1,24 @@
+<head>
+	<body>
+		<h1>Photo Search</h1>
+        <li><a href='/'>Home</a></li>
+        <form method="post" action="/photosearch">
+	        <div><label for="caption">Enter any number of tags (each tag splits by a space):</label></div>
+		    <input type="text" name="tag" placeholder="lowercase only" pattern="[a-z\ ]+ " required />
+		    <p><input type="submit" value="Search" /></p>
+		</form>
+		{% if photos %}
+		<h2>Here are the photos</h2>
+		    <ul>
+	    {% for photo in photos %}
+	        <div>
+	        <li>{{photo[2]}}<br></li>
+	        <a href="/comments/{{ photo[1] }}">Comment/Like this photo</a>
+	    </div>
+	        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'/></li>
+	        <p></p>
+	    {% endfor %}
+		    </ul>
+		{% endif %}
+	</body>
+</head>

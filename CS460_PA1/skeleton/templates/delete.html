@@ -1,0 +1,30 @@
+<h2>Your photos</h2>
+    <li><a href='/'>Home</a></li>
+	<li><a href='/logout'>Logout</a></li>
+	<li><a href='/upload'>Upload a photo</a> </li>
+{% if photos %}
+    <ul>
+    <form method="POST" action="#">
+    <div><label for="photo">Delete a photo:</label></div>
+    <input type="number" name="photo" placeholder="Enter the photo id" required="true" />
+    <input type="submit" value="Delete" />
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages%}
+                <p>{{msg}}</p>
+            {% endfor%}
+        {% endif %}
+    {% endwith%}
+        </form>
+    {% for photo in photos %}
+        <div>
+        <li>Photo id:{{photo[1]}}, {{photo[2]}}<br></li>
+        <a href="/comments/{{ photo[1] }}">Comment/Like this photo</a>
+    </div>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'/></li>
+        <p></p>
+    {% endfor %}
+    </ul>
+{% else %}
+<p>You have no photo</p>
+{% endif %}

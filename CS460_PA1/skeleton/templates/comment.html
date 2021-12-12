@@ -1,0 +1,50 @@
+{% if photo %}
+<h2>Photo id: {{photo[1]}}</h2>
+    <li><a href='/'>Home</a></li>
+    <ul>
+        <li>{{photo[2]}}<br></li>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'/></li><br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {% endfor%}
+            {% endif %}
+        {% endwith%}
+        <form method="POST" action="/comments/<{{ photo[1] }}>">
+            <br><div><input type="submit" name="like" value="Like this photo!!" /> Number of Likes: {{ like }}</div>
+            <div><label for="caption">Enter your comment :</label></div>
+            <input type="text" name="comment" />
+            <input type="submit" name="commentbutton" value="Add comment" />
+
+        </form>
+        <p></p>
+    </ul>
+        {% if usersliked %}
+        <div>Users who also liked this photo:</div>
+        <ul>
+            {% for row in usersliked %}
+            <li>
+                {{row[0]}}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>No user likes this photo yet</p>
+        {% endif %}
+
+        {% if data %}
+        <div>All comments:</div>
+        <ul>
+            {% for row in data %}
+            <li>
+                {{row[0]}}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>Comment list is empty</p>
+        {% endif %}
+{% else %}
+<p>No Result</p>
+{% endif %}

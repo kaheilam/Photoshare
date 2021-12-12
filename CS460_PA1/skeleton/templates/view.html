@@ -1,0 +1,36 @@
+<body>
+    <div class="title">
+        <h1>View Photos</h1>
+        	<li><a href='/'>Home</a></li>
+	        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages%}
+                        <p>{{msg}}</p>
+                    {% endfor%}
+                {% endif %}
+	        {% endwith%}
+<!--             <form method="post" action="/view">
+				<input type="checkbox" name="my">
+				<label for="my"> View my photos </label><br>
+				<input type="checkbox" name="all">
+				<label for="all"> View all photos </label><br>
+				<div><label for="all"> Search by tag: </label></div>
+				<input type="text" name="tag" placeholder="One lowercase word" pattern="[a-z]+" required="true" />
+				<p><input type="submit" value="Search" /></p>
+           </form>
+		 <div> -->
+		{% if photos %}
+		<h2>Here are the photos</h2>
+		    <ul>
+		    {% for photo in photos %}
+		        <div>
+		        <li>{{photo[2]}}<br></li>
+		        <a href="/comments/{{ photo[1] }}">Comment/Like this photo</a>
+		    </div>
+		        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'/></li>
+		        <p></p>
+		    {% endfor %}
+		    </ul>
+		{% endif %}
+    </div>
+</body>

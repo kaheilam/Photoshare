@@ -1,0 +1,48 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% endif %}
+
+{% if message is none %}
+  <p>You should <a href='/login'>login!</a></p>
+{% else %}
+  <p> Go to <a href='/profile'>profile?</a></p>
+{% endif %}
+
+<ul>
+<li><a href='/'>Home</a></li>
+<li><a href='/logout'>Logout</a></li>
+<li><a href='/upload'>Upload a photo</a> </li>
+<li><a href='/delete'>View/Delete photos</a> </li>
+<li><a href='/myalbum'>My albums</a> </li>
+<li><a href='/friend'>Friends</a></li>
+<li><a href='/activity'>User Activity</a></li>
+<li><a href='/photos'>View all public photos</a></li>
+<li><a href='/tags'>View all photos by tag name</a></li>
+<li><a href='/mytags'>View my photos by tag name</a></li>
+<li><a href='/populartags'>View the most popular tags</a></li>
+<li><a href='/photosearch'>Photo Search</a></li>
+<li><a href='/searchC'>Search On Comment</a></li>
+<li><a href='/alsolike'>'You-may-also-like' functionality</a></li>
+</ul>
+
+
+{% if photos %}
+<h2>Here are your photos</h2>
+    <ul>
+    {% for photo in photos %}
+        <div>
+        <li>{{photo[2]}}<br></li>
+        <a href="/comments/{{ photo[1] }}">Comment/Like this photo</a>
+    </div>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'/></li>
+        <p></p>
+    {% endfor %}
+    </ul>
+{% endif %}
+

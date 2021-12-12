@@ -1,0 +1,19 @@
+<head>
+	<body>
+		<h1>Top 10 Users With Highest Contribution Points</h1>
+
+		<li><a href='/'>Home</a></li>
+		{% if data %}
+		<ul>
+			{% for row in data %}
+			<li>
+				Point: {{row[1]}}    {{row[0]}}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<p>No one on the rank</p>
+		{% endif %}
+	{% block content %}{% endblock %}
+	</body>
+</head>

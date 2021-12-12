@@ -1,0 +1,18 @@
+<head>
+	<body>
+		{% block title %}{% endblock %}
+
+		{% if data %}
+		<ul>
+			{% for row in data %}
+			<li>
+				{{row}}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			{% block error %}{% endblock %}
+		{% endif %}
+	{% block content %}{% endblock %}
+	</body>
+</head>

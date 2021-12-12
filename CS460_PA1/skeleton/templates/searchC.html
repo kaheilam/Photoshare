@@ -1,0 +1,24 @@
+<head>
+	<body>
+		<h1>Search On Comment</h1>
+
+		<li><a href='/'>Home</a></li>
+		<form method="POST" action="#">
+        <div><label for="caption">Enter your comment :</label></div>
+        <input type="text" name="comment" required = "true"/>
+        <p><input type="submit" value="Search" /></p>
+
+        </form>
+		{% if data %}
+		<ul>
+			{% for row in data %}
+			<li>
+				Number of comments: {{row[1]}}, {{row[0]}}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<p>No result</p>
+		{% endif %}
+	</body>
+</head>

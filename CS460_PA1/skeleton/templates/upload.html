@@ -1,0 +1,43 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<head>
+    <title>Upload a photo!</title>
+</head>
+    <body>
+        <div class="title">
+            <h1>Upload a photo to Photoshare</h1>
+            <li><a href='/'>Home</a></li>
+            <li><a href='/myalbum'>My albums</a></li>
+        </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages%}
+                        <p>{{msg}}</p>
+                    {% endfor%}
+                {% endif %}
+            {% endwith%}
+            <form method="post" enctype="multipart/form-data" action="/upload">
+                <label for="photo">Select photo:</label>
+                <input type="file" name="photo" required='true' /><br />
+                <div><label for="album">Please album:</label></div>
+                <input type="number" name=album placeholder= "Enter album id" required="true" /><br />
+                <div><label for="caption">Please caption:</label></div>
+                <input type="text" name="caption" required='true' />
+                <div><label for="caption">Optional tags (each tag splits by a space):</label></div>
+                <input type="text" name="tag" placeholder="lowercase only" pattern="[a-z ]+"/>
+                <p><input type="submit" value="Upload" /></p>
+            </form>
+        <div>
+            {% if data %}
+                <label>Your album list (album_id, album_name, date of creation):</label>
+                <ul>
+                    {% for row in data %}
+                    <li>
+                        {{row}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Your album list is empty.</p>
+            {% endif %}
+        </div>
+    </body>

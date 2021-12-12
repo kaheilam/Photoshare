@@ -1,0 +1,31 @@
+<head>
+	<body>
+		<h1>Your Tag List</h1>
+        <li><a href='/'>Home</a></li>
+    	{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {% endfor%}
+            {% endif %}
+        {% endwith%}
+<!--         <form method="post" action="/view">
+				<input type="checkbox" name="my">
+				<label for="my"> View my photos </label><br>
+				<input type="checkbox" name="all">
+				<label for="all"> View all photos </label><br>
+		</form> -->
+		{% if data %}
+		<ul>
+			{% for row in data %}
+			<li>
+				<a href="/mytags/{{ row[0] }}">{{row[0]}}</a>
+		</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<p>Tag list is empty</p>
+		{% endif %}
+	{% block content %}{% endblock %}
+	</body>
+</head>

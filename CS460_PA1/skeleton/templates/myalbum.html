@@ -1,0 +1,41 @@
+<head>
+	<body>
+
+		<h1>{{email}}'s Album Page</h1>
+		<li><a href='/'>Home</a></li>
+		{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {% endfor%}
+            {% endif %}
+        {% endwith%}
+		<form method = "POST" action = "#">
+			 <p> Add album: </p>	
+			 <input type="txt" name="album" placeholder="Enter album name">
+			 <input type="submit" name="addbutton" value="Add">
+			 <p> Delete album: </p>
+			 <input type="number" name="delete" placeholder="Enter album id">	 
+			 <input type="submit" name="deletebutton" value="Delete">
+<!-- 			 <p> View album: </p>
+			 <input type="number" name="view" placeholder="Enter album id">	 
+			 <input type="submit" name="viewbutton" value="View"> -->
+		</form>
+
+		<!-- <li><a href='/addfriend'>Search/Add friends</a></li> -->
+		<div>
+			{% if data %}
+			<label>Your album list (album_id, album_name, date of creation):</label>
+			<ul>
+				{% for row in data %}
+				<li>
+					{{row}}
+				</li>
+				{% endfor %}
+			</ul>
+			{% else %}
+				<p>Your album list is empty.</p>
+			{% endif %}
+		</div>
+	</body>
+</head>

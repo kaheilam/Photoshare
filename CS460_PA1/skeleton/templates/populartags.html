@@ -1,0 +1,27 @@
+
+<head>
+	<body>
+		<h1>Most Popular Tag List</h1>
+        <li><a href='/'>Home</a></li>
+    	{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages%}
+                    <p>{{msg}}</p>
+                {% endfor%}
+            {% endif %}
+        {% endwith%}
+        <p> From the top to the buttom, the most popular to the least popular </p>
+		{% if data %}
+		<ul>
+			{% for row in data %}
+			<li>
+				<a href="/tags/{{ row[3] }}">{{row[3]}}</a>
+		</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			{% block error %}{% endblock %}
+		{% endif %}
+	{% block content %}{% endblock %}
+	</body>
+</head>

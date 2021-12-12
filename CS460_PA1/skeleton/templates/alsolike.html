@@ -1,0 +1,16 @@
+{% if photos %}
+<h2>'You-may-also-like' functionality</h2>
+    <li><a href='/'>Home</a></li>
+    <ul>
+    {% for photo in photos %}
+        <div>
+        <li>{{photo[2]}}<br></li>
+        <a href="/comments/{{ photo[1] }}">Comment/Like this photo</a>
+    </div>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'/></li>
+        <p></p>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h2>No Result</h2>
+{% endif %}
